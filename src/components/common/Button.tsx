@@ -13,7 +13,7 @@ const Button: FC<Props> = ({
     return (
         <button
             type={type}
-            className={`rounded-[7px] cursor-pointer border border-brand-purple text-brand-purple  px-6 py-2.25 text-lg font-semibold  disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+            className={`rounded-[7px] cursor-pointer border text-sm border-brand-purple text-brand-purple  px-6 py-2.25 lg:text-lg font-semibold  disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
             {...props}
         >
             {label}

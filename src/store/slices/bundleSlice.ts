@@ -1,19 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { productData } from '../../data/products';
 import { BundleState, Selections } from '../../types';
 
-const getDefaultSelections = (): Selections => ({
-  'indoor-cam': { white: 0, black: 0 },
-  'door-sensor': { white: 1, brown: 0 },
-  'floodlight': { default: 1 },
-  'premium-plan': { default: 1 }
-});
+const getDefaultSelections = (): Selections => {
+  const selections: Selections = {};
+
+  productData.forEach((step) => {
+    step.products.forEach((product) => {
+      const variantIds = product.variants?.map((variant) => variant.id) ?? ['default'];
+      selections[product.id] = variantIds.reduce<Record<string, number>>((acc, variantId) => {
+        acc[variantId] = 0;
+        return acc;
+      }, {});
+    });
+  });
+
+  return selections;
+};
+
+const getDefaultSelectedVariants = () => {
+  const selectedVariants: Record<string, string> = {};
+
+  productData.forEach((step) => {
+    step.products.forEach((product) => {
+      if (product.variants?.length) {
+        selectedVariants[product.id] = product.variants[0].id;
+      }
+    });
+  });
+
+  return selectedVariants;
+};
 
 const initialState: BundleState = {
   selections: getDefaultSelections(),
-  selectedVariants: {
-    'indoor-cam': 'white',
-    'door-sensor': 'white'
-  }
+  selectedVariants: getDefaultSelectedVariants()
 };
 
 const bundleSlice = createSlice({
@@ -79,10 +100,7 @@ const bundleSlice = createSlice({
 
     resetBundle: (state) => {
       state.selections = getDefaultSelections();
-      state.selectedVariants = {
-        'indoor-cam': 'white',
-        'door-sensor': 'white'
-      };
+      state.selectedVariants = getDefaultSelectedVariants();
     },
 
     loadBundle: (state, action: PayloadAction<BundleState>) => {

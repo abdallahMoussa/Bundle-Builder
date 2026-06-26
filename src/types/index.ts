@@ -5,17 +5,22 @@ export interface Variant {
   image?: string;
 }
 
+export type Category = 'cameras' | 'plan' | 'sensors' | 'accessories'
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
+  priceSufex?: string;
   compareAtPrice?: number;
   badge?: string;
+  image?: string;
   variants?: Variant[];
   defaultVariant?: string;
-  category: 'cameras' | 'plan' | 'sensors' | 'accessories';
+  category: Category;
 }
+
 
 export interface Step {
   id: string;

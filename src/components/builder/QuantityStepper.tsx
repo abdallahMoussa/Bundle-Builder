@@ -17,7 +17,7 @@ const QuantityStepper: FC<Props> = ({
     disabled = false,
 }) => {
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-1">
             <button
                 type="button"
                 onClick={onDecrement}

@@ -2,6 +2,7 @@ export const iconNameMap: Record<string, string> = {
     Camera: 'cam',
     ChevronUp: 'chevron-up',
     ChevronDown: 'chevron-down',
+    Wezy: 'wyze-logo'
 }
 
 export const iconModules = import.meta.glob('../assets/icons/*.svg', {

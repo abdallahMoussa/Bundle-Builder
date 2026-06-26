@@ -42,8 +42,8 @@ const AccordionStep: FC<Props> = ({
                     <h3 className="text-[22px] font-semibold tracking-[0.2px] text-texts-main">{title}</h3>
                 </div>
                 <span onClick={onToggle} className="flex cursor-pointer items-center gap-1 text-sm font-medium text-brand-purple">
-                    <span className={`hidden sm:block ${isOpen ? 'md:block' : 'md:hidden'}`}>
-                        {`${selectedCount} ${t('selected')}`}
+                    <span>
+                        {selectedCount > 0 ? `${selectedCount} ${t('selected')}` : ''}
                     </span>
                     <Icon name={`${isOpen ? 'ChevronUp' : 'ChevronDown'}`} className="mt-1 h-3 w-3" />
                 </span>
@@ -52,7 +52,7 @@ const AccordionStep: FC<Props> = ({
             {
                 isOpen ? (
                     <div className="px-5 py-5">
-                        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-2">{children}</div>
+                        <div className={`grid grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-${(children as [])?.length} lg:grid-cols-2`}>{children}</div>
                         <div className="mt-5 flex justify-center">
                             {!lastStep && <Button onClick={onNext} label={` ${t('next')}: ${nextTitle}`} />}
                         </div>
