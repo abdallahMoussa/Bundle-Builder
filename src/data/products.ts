@@ -146,7 +146,7 @@ export const productData: Step[] = [
         badge: 'Save 20%',
         category: 'accessories',
         variants: [
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/wyze-microsd.webp' },
+          { id: 'black', label: 'Black', color: '#000', image: new URL('/src/assets/images/wyze-microsd.webp', import.meta.url).href },
         ],
         defaultVariant: 'Black'
 
