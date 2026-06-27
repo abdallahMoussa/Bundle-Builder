@@ -7,6 +7,7 @@ import './lang/i18n'
 import App from './App.tsx'
 import LangSwitcher from './components/common/LangSwitcher.tsx'
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>

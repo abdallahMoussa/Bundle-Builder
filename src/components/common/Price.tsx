@@ -1,23 +1,42 @@
 interface PriceProps {
     compareAtPrice?: number
-    price: number
+    price?: number
     priceSufex?: string
+    reviewing?: boolean
+    className?: string
 }
 
-const Price = ({ compareAtPrice, price, priceSufex }: PriceProps) => {
+const Price = ({
+    compareAtPrice,
+    price,
+    priceSufex = '',
+    reviewing = false,
+    className = ''
+}: PriceProps) => {
     const isFree = price === 0
 
-    return (
-        <div className="flex flex-col items-end gap-0 tracking-[0.6px] leading-normal">
-            {compareAtPrice ? (
-                <span className="text-[16px] -mb-1 text-texts-sale line-through">
-                    ${compareAtPrice.toFixed(2)}{priceSufex}
-                </span>
-            ) : null}
+    const comparePriceClass = reviewing
+        ? 'text-texts-label/85'
+        : 'text-texts-sale'
 
-            <span className="text-[16px] text-texts-label/85 font-semibold">
-                {isFree ? 'FREE' : `$${price.toFixed(2)}${priceSufex ?? ''}`}
-            </span>
+    const priceClass = reviewing
+        ? 'text-brand-purple'
+        : 'text-texts-label/85'
+
+    return (
+        <div className={`flex flex-col items-end gap-0 leading-normal tracking-[0.6px] lg:text-[16px] ${className}`}>
+            {compareAtPrice && (
+                <span
+                    className={`-mb-1 line-through ${comparePriceClass}`}
+                >
+                    ${compareAtPrice.toFixed(2)}
+                    {priceSufex}
+                </span>
+            )}
+
+            {price !== undefined && <span className={`font-semibold ${priceClass}`}>
+                {isFree ? 'FREE' : `$${price?.toFixed(2)}${priceSufex}`}
+            </span>}
         </div>
     )
 }

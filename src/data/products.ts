@@ -9,7 +9,7 @@ export const productData: Step[] = [
       {
         id: 'wyze-cam-v4',
         name: 'Wyze Cam v4',
-        description: 'The clearest Wyze Cam ever made.',
+        description: 'The clearest Wyze Cam ever made. The clearest Wyze Cam ever made. The clearest Wyze Cam ever made.',
         price: 27.98,
         compareAtPrice: 35.98,
         badge: 'Save 22%',
@@ -17,7 +17,7 @@ export const productData: Step[] = [
         variants: [
           { id: 'white', label: 'White', color: '#FFF', image: '/src/assets/images/arlo-cam-white.png' },
           { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/arlo-cam-black.png' },
-          { id: 'grey', label: 'Grey', color: '#999', image: '/src/assets/images/arlo-cam-grey.png' },
+          { id: 'grey', label: 'Grey', color: '#AAAAAA', image: '/src/assets/images/arlo-cam-grey.png' },
         ],
         defaultVariant: 'white'
       },
@@ -98,17 +98,6 @@ export const productData: Step[] = [
         compareAtPrice: 19.99, category: 'plan',
         variants: [
           { id: 'black', label: 'Black', color: '#000', image: '/src/assets/icons/wyze-logo.svg', },
-        ],
-      },
-      {
-        id: 'fast-shipping',
-        name: 'Fast Shipping',
-        description: 'Fast and reliable shipping with delivery typically within 2–3 business days.',
-        price: 0,
-        compareAtPrice: 5.99,
-        category: 'plan',
-        variants: [
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/icons/shipping.svg', },
         ],
       }
     ]

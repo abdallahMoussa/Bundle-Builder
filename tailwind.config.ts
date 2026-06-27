@@ -17,6 +17,7 @@ export default {
           label: '#484848',
           description: '#1F1F1F',
           sale: '#D8392B',
+          title: '#A8B2BD'
         },
         borders: {
           main: '#CED6DE',

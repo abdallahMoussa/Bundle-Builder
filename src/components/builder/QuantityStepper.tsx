@@ -5,6 +5,7 @@ type Props = {
     onIncrement: () => void
     onDecrement: () => void
     disabled?: boolean
+    className?: string
 }
 
 const buttonClass =
@@ -15,6 +16,7 @@ const QuantityStepper: FC<Props> = ({
     onIncrement,
     onDecrement,
     disabled = false,
+    className = ''
 }) => {
     return (
         <div className="flex items-center gap-2 mt-1">
@@ -22,7 +24,7 @@ const QuantityStepper: FC<Props> = ({
                 type="button"
                 onClick={onDecrement}
                 disabled={disabled || value <= 0}
-                className={buttonClass}
+                className={`${buttonClass} ${className}`}
             >
                 −
             </button>
@@ -33,7 +35,7 @@ const QuantityStepper: FC<Props> = ({
                 type="button"
                 onClick={onIncrement}
                 disabled={disabled}
-                className={buttonClass}
+                className={`${buttonClass} ${className}`}
             >
                 +
             </button>

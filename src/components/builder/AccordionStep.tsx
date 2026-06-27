@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react'
+import { type FC, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import Icon from '../common/Icon'
 import Divider from '../common/Divider'
@@ -26,22 +26,24 @@ const AccordionStep: FC<Props> = ({
     onToggle,
     onNext,
     children,
-    lastStep
+    lastStep,
 }) => {
     const { t } = useTranslation()
 
     return (
-        <div className={`${isOpen ? 'rounded-[10px] bg-brand-baby-blue' : ''} pt-3.75 mb-3`}>
-            <p className="text-[12px] text-start font-500 font-medium uppercase px-3.75 tracking-[1.6px] leading-[100%] text-texts-label">
+        <div
+
+            className={`${isOpen ? 'rounded-[10px] bg-brand-baby-blue' : ''} pt-3.75 mb-3`}>
+            <p onClick={onToggle} className="text-[12px] cursor-pointer text-start font-500 font-medium uppercase px-3.75 tracking-[1.6px] leading-[100%] text-texts-label">
                 {stepLabel} {t('of')} {STEP_NUMBERS}
             </p>
             <Divider className='h-[0.5px] my-2' color='text-texts-description' />
-            <div className={`flex justify-between align-middle pt-2 px-3.75 ${!isOpen ? 'border-b border-b-texts-main' : ''}`}>
-                <div onClick={onToggle} className="flex cursor-pointer items-center align-middle gap-2">
+            <div onClick={onToggle} className={`flex cursor-pointer justify-between align-middle pt-2 px-3.75 ${!isOpen ? 'border-b border-b-texts-main' : ''}`}>
+                <div className="flex items-center align-middle gap-2">
                     <Icon name="Camera" className="h-5.5 w-5.5" />
                     <h3 className="text-[22px] font-semibold tracking-[0.2px] text-texts-main">{title}</h3>
                 </div>
-                <span onClick={onToggle} className="flex cursor-pointer items-center gap-1 text-sm font-medium text-brand-purple">
+                <span className="flex items-center gap-1 text-sm font-medium text-brand-purple">
                     <span>
                         {selectedCount > 0 ? `${selectedCount} ${t('selected')}` : ''}
                     </span>
@@ -49,16 +51,27 @@ const AccordionStep: FC<Props> = ({
                 </span>
             </div>
 
-            {
-                isOpen ? (
-                    <div className="px-5 py-5">
-                        <div className={`grid grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-${(children as [])?.length} lg:grid-cols-2`}>{children}</div>
-                        <div className="mt-5 flex justify-center">
-                            {!lastStep && <Button onClick={onNext} label={` ${t('next')}: ${nextTitle}`} />}
-                        </div>
+            <div
+                className={`
+                    overflow-hidden transition-all duration-500 ease-in-out
+                    ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}
+                `}
+            >
+                <div className="px-5 py-5">
+                    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-2">
+                        {children}
                     </div>
-                ) : null
-            }
+
+                    <div className="mt-5 flex justify-center">
+                        {!lastStep && (
+                            <Button
+                                onClick={onNext}
+                                label={`${t('next')}: ${nextTitle}`}
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
         </div >
     )
 }

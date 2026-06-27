@@ -34,7 +34,8 @@ const getDefaultSelectedVariants = () => {
 
 const initialState: BundleState = {
   selections: getDefaultSelections(),
-  selectedVariants: getDefaultSelectedVariants()
+  selectedVariants: getDefaultSelectedVariants(),
+
 };
 
 const bundleSlice = createSlice({
@@ -47,7 +48,6 @@ const bundleSlice = createSlice({
       action: PayloadAction<{ productId: string; variantId: string }>
     ) => {
       const { productId, variantId } = action.payload;
-
       if (!state.selections[productId]) {
         state.selections[productId] = {};
       }
@@ -103,10 +103,15 @@ const bundleSlice = createSlice({
       state.selectedVariants = getDefaultSelectedVariants();
     },
 
-    loadBundle: (state, action: PayloadAction<BundleState>) => {
-      state.selections = action.payload.selections;
-      state.selectedVariants = action.payload.selectedVariants;
-    }
+    loadBundle: (state, action: PayloadAction<Partial<BundleState>>) => {
+      state.selections =
+        action.payload.selections ?? getDefaultSelections();
+
+      state.selectedVariants =
+        action.payload.selectedVariants ??
+        getDefaultSelectedVariants();
+    },
+
   }
 });
 

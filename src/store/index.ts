@@ -8,7 +8,7 @@ const loadPersistedState = () => {
     }
 
     try {
-        const savedState = window.localStorage.getItem('bundle-builder-state')
+        const savedState = window.localStorage.getItem('bundle-saved')
         return savedState ? JSON.parse(savedState) : undefined
     } catch {
         return undefined
@@ -27,9 +27,6 @@ const store = configureStore({
     preloadedState: persistedState,
 })
 
-store.subscribe(() => {
-    window.localStorage.setItem('bundle-builder-state', JSON.stringify(store.getState()))
-})
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

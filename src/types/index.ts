@@ -40,6 +40,7 @@ export interface ReviewItem {
   variantLabel: string;
   quantity: number;
   price: number;
+  priceSufex?: string;
   compareAtPrice?: number;
   image?: string;
   category: string;
@@ -57,6 +58,7 @@ export interface OrderSummary {
 export interface BundleState {
   selections: Selections;
   selectedVariants: SelectedVariants;
+
 }
 
 export interface UIState {

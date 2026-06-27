@@ -17,8 +17,10 @@ const Builder = () => {
         setVariant,
     } = useBundleBuilder()
 
+    const allStepsClosed = ui.activeStep === -1
+
     return (
-        <section className='w-full flex flex-col gap-1.5 lg:w-2/3'>
+        <section className={`w-full flex flex-col gap-1.5 lg:w-2/3 ${allStepsClosed ? 'bg-brand-baby-blue rounded-[10px]' : ''}`}>
 
             {steps.map((step, index) => {
                 const isOpen = ui.activeStep === index
@@ -36,13 +38,14 @@ const Builder = () => {
                         onNext={() => nextStep(index)}
                         lastStep={index === steps.length - 1}
                     >
-                        {step.products.map((product) => {
+                        {step.products.map((product, index) => {
                             const quantity = getProductQuantityTotal(product)
                             const selectedVariantId = getSelectedVariant(product.id)
 
                             return (
                                 <ProductCard
                                     key={product.id}
+                                    index={index}
                                     product={product}
                                     quantity={quantity}
                                     selectedVariantId={selectedVariantId}

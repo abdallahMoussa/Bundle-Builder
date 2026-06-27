@@ -19,5 +19,13 @@
     "total": "Total",
     "language": "Language",
     "ar": "العربية",
-    "en": "English"
+    "en": "English",
+    "saveLater": "Save my system for later",
+    "orderPlacedSuccessfully": "Your order has been placed successfully.",
+    "description": "Description",
+    "availableVariants": "Available variants",
+    "price": "Price",
+    "close": "Close",
+    "productDetails": "Product details",
+    "productName": "Product name"
 }

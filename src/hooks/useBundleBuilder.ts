@@ -1,77 +1,139 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { productData } from '../data/products'
-import type { Product, ReviewItem } from '../types'
+import type { Product, ReviewItem, BundleState } from '../types'
 import type { AppDispatch, RootState } from '../store'
 import {
     decrementQuantity,
     incrementQuantity,
+    loadBundle,
+    resetBundle,
     setQuantity,
     setSelectedVariant,
 } from '../store/slices/bundleSlice'
 import { setActiveStep, setSaved } from '../store/slices/uiSlice'
 
+import { useLocalStorage } from './useLocalStorage'
+
 export const useBundleBuilder = () => {
     const dispatch = useDispatch<AppDispatch>()
+
     const bundle = useSelector((state: RootState) => state.bundle)
     const ui = useSelector((state: RootState) => state.ui)
 
-    const increment = (productId: string, variantId: string) => {
-        dispatch(incrementQuantity({ productId, variantId }))
-    }
+    const { saveValue, getValue, removeValue } = useLocalStorage()
 
-    const decrement = (productId: string, variantId: string) => {
-        dispatch(decrementQuantity({ productId, variantId }))
-    }
+    const increment = useCallback(
+        (productId: string, variantId: string) => {
+            dispatch(incrementQuantity({ productId, variantId }))
+        },
+        [dispatch],
+    )
 
-    const setVariant = (productId: string, variantId: string) => {
-        dispatch(setSelectedVariant({ productId, variantId }))
-    }
+    const decrement = useCallback(
+        (productId: string, variantId: string) => {
+            dispatch(decrementQuantity({ productId, variantId }))
+        },
+        [dispatch],
+    )
 
-    const setQty = (productId: string, variantId: string, quantity: number) => {
-        dispatch(setQuantity({ productId, variantId, quantity }))
-    }
+    const setVariant = useCallback(
+        (productId: string, variantId: string) => {
+            dispatch(setSelectedVariant({ productId, variantId }))
+        },
+        [dispatch],
+    )
 
-    const selectStep = (stepIndex: number) => {
-        dispatch(setActiveStep(stepIndex))
-    }
+    const resetCart = useCallback(
+        () => {
+            dispatch(resetBundle())
+            removeValue('bundle-saved')
+        },
+        [dispatch, removeValue],
+    )
 
-    const toggleStep = (stepIndex: number) => {
-        dispatch(setActiveStep(ui.activeStep === stepIndex ? -1 : stepIndex))
-    }
 
-    const nextStep = (currentStep: number) => {
-        dispatch(setActiveStep(Math.min(currentStep + 1, productData.length - 1)))
-    }
 
-    const getQuantity = (productId: string, variantId: string) => {
-        return bundle.selections[productId]?.[variantId] ?? 0
-    }
+    const setQty = useCallback(
+        (productId: string, variantId: string, quantity: number) => {
+            dispatch(setQuantity({ productId, variantId, quantity }))
+        },
+        [dispatch],
+    )
 
-    const getSelectedVariant = (productId: string) => {
-        return bundle.selectedVariants[productId] ?? 'default'
-    }
+    const selectStep = useCallback(
+        (stepIndex: number) => {
+            dispatch(setActiveStep(stepIndex))
+        },
+        [dispatch],
+    )
 
-    const getProductQuantityTotal = (product: Product) => {
-        const variantIds = product.variants?.map((variant) => variant.id) ?? ['default']
-        return variantIds.reduce((total, variantId) => total + getQuantity(product.id, variantId), 0)
-    }
+    const toggleStep = useCallback(
+        (stepIndex: number) => {
+            dispatch(setActiveStep(ui.activeStep === stepIndex ? -1 : stepIndex))
+        },
+        [dispatch, ui.activeStep],
+    )
 
-    const getSelectedCountForStep = (stepId: string) => {
-        const step = productData.find((entry) => entry.id === stepId)
-        if (!step) {
-            return 0
-        }
+    const nextStep = useCallback(
+        (currentStep: number) => {
+            dispatch(setActiveStep(Math.min(currentStep + 1, productData.length - 1)))
+        },
+        [dispatch],
+    )
 
-        return step.products.filter((product) => getProductQuantityTotal(product) > 0).length
-    }
+    const getQuantity = useCallback(
+        (productId: string, variantId: string) => bundle.selections?.[productId]?.[variantId] ?? 0,
+        [bundle.selections],
+    )
+
+    const getSelectedVariant = useCallback(
+        (productId: string) => bundle.selectedVariants?.[productId] ?? 'default',
+        [bundle.selectedVariants],
+    )
+
+    const getProductQuantityTotal = useCallback(
+        (product: Product) => {
+            const variantIds = product.variants?.map((variant) => variant.id) ?? ['default']
+
+            return variantIds.reduce((total, variantId) => total + (bundle.selections?.[product.id]?.[variantId] ?? 0), 0)
+        },
+        [bundle.selections],
+    )
+
+    const getSelectedCountForStep = useCallback(
+        (stepId: string) => {
+            const step = productData.find((entry) => entry.id === stepId)
+
+            if (!step) {
+                return 0
+            }
+
+            return step.products.filter((product) => getProductQuantityTotal(product) > 0).length
+        },
+        [getProductQuantityTotal],
+    )
+
+    const loadSavedItems = useCallback(
+        () => {
+            const saved = getValue<BundleState>('bundle-saved')
+
+            if (saved) {
+                dispatch(loadBundle(saved))
+            }
+        },
+        [dispatch, getValue],
+    )
 
     const reviewItems = useMemo<ReviewItem[]>(() => {
         return productData.flatMap((step) =>
             step.products.flatMap((product) => {
                 const variantIds = product.variants?.map((variant) => variant.id) ?? ['default']
+
                 return variantIds.flatMap((variantId) => {
-                    const quantity = getQuantity(product.id, variantId)
+                    const quantity = bundle.selections?.[product.id]?.[variantId] ?? 0
+
                     if (quantity <= 0) {
                         return []
                     }
@@ -90,32 +152,41 @@ export const useBundleBuilder = () => {
                             image: variant?.image,
                             category: product.category,
                             totalPrice: product.price * quantity,
-                        } satisfies ReviewItem,
+                        },
                     ]
                 })
             }),
         )
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bundle.selections])
 
     const summary = useMemo(() => {
         const subtotal = reviewItems.reduce((sum, item) => sum + item.totalPrice, 0)
-        const originalSubtotal = reviewItems.reduce((sum, item) => {
-            return sum + (item.compareAtPrice ? item.compareAtPrice * item.quantity : item.price * item.quantity)
-        }, 0)
+
+        const originalSubtotal = reviewItems.reduce(
+            (sum, item) => sum + (item.compareAtPrice ? item.compareAtPrice * item.quantity : item.price * item.quantity),
+            0,
+        )
+
+        const shipping = subtotal > 0 ? 9.99 : 0
 
         return {
             subtotal,
             savings: Math.max(0, originalSubtotal - subtotal),
-            shipping: subtotal > 0 ? 9.99 : 0,
-            total: subtotal + (subtotal > 0 ? 9.99 : 0),
+            shipping,
+            total: subtotal + shipping,
         }
     }, [reviewItems])
+
+    const saveSystem = useCallback(() => {
+        saveValue('bundle-saved', { ...bundle, ...ui })
+        dispatch(setSaved(true))
+    }, [bundle, dispatch, saveValue, ui])
 
     return {
         steps: productData,
         bundle,
         ui,
+        loadSavedItems,
         increment,
         decrement,
         setVariant,
@@ -129,6 +200,7 @@ export const useBundleBuilder = () => {
         getSelectedCountForStep,
         reviewItems,
         summary,
-        saveSystem: () => dispatch(setSaved(true)),
+        resetCart,
+        saveSystem,
     }
 }
