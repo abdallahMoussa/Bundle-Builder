@@ -22,6 +22,7 @@ const ReviewPanel = () => {
             title: t('orderPlacedSuccessfully'),
             icon: 'success',
             draggable: true,
+            confirmButtonText: t('ok')
         }).then(() => {
             resetCart()
         })

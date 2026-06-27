@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Product } from '../../types'
 
 interface ProductDetailsContentProps {
@@ -9,9 +10,10 @@ const ProductDetailsContent = ({
     product,
     t,
 }: ProductDetailsContentProps) => {
+    const { i18n } = useTranslation()
 
     return (
-        <div className="text-left">
+        <div className="text-left" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
 
             {product?.variants && product.variants?.length > 0 && (
                 <div className="mb-6 flex justify-center gap-3 overflow-x-auto">
@@ -61,7 +63,7 @@ const ProductDetailsContent = ({
             <p className="mt-1 flex gap-2 text-sm sm:text-lg">
                 {product.variants?.map((variant, i) => (
                     <span key={i} className="rounded-sm border px-2 py-0">
-                        {variant.label}
+                        {t(variant.id)}
                     </span>
                 ))}
             </p>
