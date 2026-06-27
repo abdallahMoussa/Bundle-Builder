@@ -1,7 +1,6 @@
 import { useEffect, useState, type FC } from 'react'
 
 import type { Product } from '../../types'
-import Badge from '../common/Badge'
 import { truncate } from '../../utils/helpers'
 import LearnMore from '../common/LearnMore'
 import Price from '../common/Price'
@@ -9,6 +8,7 @@ import { useBundleBuilder } from '../../hooks/useBundleBuilder'
 
 import VariantSelector from './VariantSelector'
 import QuantityStepper from './QuantityStepper'
+import ProductImage from './ProductImage'
 
 type Props = {
     product: Product
@@ -32,7 +32,6 @@ const ProductCard: FC<Props> = ({
 }) => {
     const isSelected = quantity > 0
 
-    const [isImageLoading, setIsImageLoading] = useState(true)
     const [visible, setVisible] = useState(false)
 
     const { getQuantity } = useBundleBuilder()
@@ -60,60 +59,30 @@ const ProductCard: FC<Props> = ({
         }
     }
 
-    const activeVariant = product.variants?.find((variant) => variant.id === selectedVariantId)
-
-    const imageSrc = activeVariant?.image ?? product.variants?.[0]?.image ?? product.image
-
     return (
         <div
             onClick={handlePlanToggle}
             className={`
-                  relative h-full flex flex-wrap rounded-[10px] bg-white p-3 pb-1 shadow-sm
+                  relative h-full flex flex-wrap rounded-[10px] bg-white p-3 pb-1 shadow-sm hover:z-100
                   transition-all duration-700 ease-out
                   ${visible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
                   ${isSelected ? 'border-2 border-brand-purple/70' : 'border-2 border-transparent'}
                 `}
         >
+            <ProductImage product={product} selectedVariantId={selectedVariantId} visible={visible} />
+
             <div
                 className={`
-                    xs-w-1/3 md:w-full lg:w-1/3
-                    transition-all duration-700 delay-100 
+                    flex flex-col gap-3 md:w-full lg:w-2/3 xs-m-auto
+                    transition-all duration-700 delay-200
                     ${visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}
-                  `}
-            >
-                {product.badge && <Badge title={product.badge} />}
-
-                <div className='relative flex min-h-full items-center justify-center overflow-hidden'>
-                    {isImageLoading && (
-                        <div className='absolute inset-0 top-0 m-3 h-20 animate-pulse rounded-lg bg-brand-purple' />
-                    )}
-
-                    <img
-                        src={imageSrc}
-                        alt={product.name}
-                        onLoad={() => setIsImageLoading(false)}
-                        onError={() => setIsImageLoading(false)}
-                        className={`
-                      w-24 m-auto object-cover p-0 xl:p-4
-                      transition-all duration-700
-                      ${isImageLoading ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}
-                      `}
-                    />
-                </div>
-            </div>
-
-            <div
-                className={`
-          flex flex-col gap-3 md:w-full lg:w-2/3 xs-m-auto
-          transition-all duration-700 delay-200
-          ${visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}
-        `}
+                    `}
             >
                 <div
                     className={`
-            text-start transition-opacity duration-500 delay-300
-            ${visible ? 'opacity-100' : 'opacity-0'}
-          `}
+                        text-start transition-opacity duration-500 delay-300
+                        ${visible ? 'opacity-100' : 'opacity-0'}
+                    `}
                 >
                     <h3 className='text-[16px] font-semibold leading-normal tracking-[0.6px] text-texts-main'>{product.name}</h3>
 
