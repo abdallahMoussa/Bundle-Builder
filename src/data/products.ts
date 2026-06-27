@@ -9,17 +9,33 @@ export const productData: Step[] = [
       {
         id: 'wyze-cam-v4',
         name: 'Wyze Cam v4',
-        description: 'The clearest Wyze Cam ever made. The clearest Wyze Cam ever made. The clearest Wyze Cam ever made.',
+        description:
+          'The clearest Wyze Cam ever made. The clearest Wyze Cam ever made. The clearest Wyze Cam ever made.',
         price: 27.98,
         compareAtPrice: 35.98,
         badge: 'Save 22%',
         category: 'cameras',
         variants: [
-          { id: 'white', label: 'White', color: '#FFF', image: '/src/assets/images/arlo-cam-white.png' },
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/arlo-cam-black.png' },
-          { id: 'grey', label: 'Grey', color: '#AAAAAA', image: '/src/assets/images/arlo-cam-grey.png' },
+          {
+            id: 'white',
+            label: 'White',
+            color: '#FFF',
+            image: new URL('/src/assets/images/arlo-cam-white.png', import.meta.url).href,
+          },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/images/arlo-cam-black.png', import.meta.url).href,
+          },
+          {
+            id: 'grey',
+            label: 'Grey',
+            color: '#AAAAAA',
+            image: new URL('/src/assets/images/arlo-cam-grey.png', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'white'
+        defaultVariant: 'white',
       },
       {
         id: 'wyze-cam-v3',
@@ -30,10 +46,20 @@ export const productData: Step[] = [
         badge: 'Save 12%',
         category: 'cameras',
         variants: [
-          { id: 'white', label: 'White', color: '#FFF', image: '/src/assets/images/wyze-cam-pan-v3-white.png' },
-          { id: 'black', label: 'Black', color: '#1A1A1A', image: '/src/assets/images/wyze-cam-pan-v3-black.png' }
+          {
+            id: 'white',
+            label: 'White',
+            color: '#FFF',
+            image: new URL('/src/assets/images/wyze-cam-pan-v3-white.png', import.meta.url).href,
+          },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#1A1A1A',
+            image: new URL('/src/assets/images/wyze-cam-pan-v3-black.png', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'white'
+        defaultVariant: 'white',
       },
       {
         id: 'wyze-cam-floodlight-v2',
@@ -44,10 +70,20 @@ export const productData: Step[] = [
         badge: 'Save 22%',
         category: 'cameras',
         variants: [
-          { id: 'white', label: 'White', color: '#FFF', image: '/src/assets/images/wyze-cam-floodlight-v2-white.png' },
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/wyze-cam-floodlight-v2-black.png' },
+          {
+            id: 'white',
+            label: 'White',
+            color: '#FFF',
+            image: new URL('/src/assets/images/wyze-cam-floodlight-v2-white.png', import.meta.url).href,
+          },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/images/wyze-cam-floodlight-v2-black.png', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'white'
+        defaultVariant: 'white',
       },
       {
         id: 'wyze-duo-cam-doorbell',
@@ -56,14 +92,20 @@ export const productData: Step[] = [
         price: 69.98,
         category: 'cameras',
         variants: [
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/wyze-duo-cam-doorbell-black.png', },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/images/wyze-duo-cam-doorbell-black.png', import.meta.url).href,
+          },
         ],
         defaultVariant: 'black',
       },
       {
         id: 'wyze-battery-cam-pro',
         name: 'Wyze Battery Cam Pro',
-        description: 'Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.',
+        description:
+          'Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.',
         price: 89.98,
         category: 'cameras',
         variants: [
@@ -71,19 +113,20 @@ export const productData: Step[] = [
             id: 'white',
             label: 'White',
             color: '#FFF',
-            image: '/src/assets/images/wyze-battery-cam-pro-white.png',
+            image: new URL('/src/assets/images/wyze-battery-cam-pro-white.png', import.meta.url).href,
           },
           {
             id: 'black',
-            label: 'Glack',
+            label: 'Black',
             color: '#000',
-            image: '/src/assets/images/wyze-battery-cam-pro-black.png',
+            image: new URL('/src/assets/images/wyze-battery-cam-pro-black.png', import.meta.url).href,
           },
         ],
         defaultVariant: 'white',
       },
-    ]
+    ],
   },
+
   {
     id: 'plan',
     title: 'chooseYourPlan',
@@ -92,16 +135,24 @@ export const productData: Step[] = [
       {
         id: 'cam-unlimited',
         name: 'Cam Unlimited',
-        description: 'Unlock unlimited camera support, extended cloud storage, AI-powered event detection, and priority customer support.',
+        description:
+          'Unlock unlimited camera support, extended cloud storage, AI-powered event detection, and priority customer support.',
         price: 15.99,
         priceSufex: '/mo',
-        compareAtPrice: 19.99, category: 'plan',
+        compareAtPrice: 19.99,
+        category: 'plan',
         variants: [
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/icons/wyze-logo.svg', },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/icons/wyze-logo.svg', import.meta.url).href,
+          },
         ],
       },
-    ]
+    ],
   },
+
   {
     id: 'sensors',
     title: 'chooseYourSensors',
@@ -116,22 +167,33 @@ export const productData: Step[] = [
         badge: 'Save 50%',
         category: 'sensors',
         variants: [
-          { id: 'black', label: 'Black', color: '#000', image: '/src/assets/images/wyze-scale-ultra.webp' },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/images/wyze-scale-ultra.webp', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'Black'
+        defaultVariant: 'black',
       },
       {
         id: 'motion-sensor',
         name: 'Motion Sensor',
         description: 'Passive infrared motion detector',
         price: 39.99,
+        category: 'sensors',
         variants: [
-          { id: 'white', label: 'White', color: '#fff', image: '/src/assets/images/wyze-sense-motion.webp' },
+          {
+            id: 'white',
+            label: 'White',
+            color: '#fff',
+            image: new URL('/src/assets/images/wyze-sense-motion.webp', import.meta.url).href,
+          },
         ],
-        category: 'sensors'
-      }
-    ]
+      },
+    ],
   },
+
   {
     id: 'accessories',
     title: 'addExtraProtection',
@@ -139,29 +201,39 @@ export const productData: Step[] = [
     products: [
       {
         id: 'micro-sd',
-        name: 'Wyze Cam V4 32gb Microsd Card',
-        description: 'Security camera with built-in floodlight',
+        name: 'Wyze Cam V4 32GB MicroSD Card',
+        description: 'Security camera storage expansion',
         price: 199.99,
         compareAtPrice: 249.99,
         badge: 'Save 20%',
         category: 'accessories',
         variants: [
-          { id: 'black', label: 'Black', color: '#000', image: new URL('/src/assets/images/wyze-microsd.webp', import.meta.url).href },
+          {
+            id: 'black',
+            label: 'Black',
+            color: '#000',
+            image: new URL('/src/assets/images/wyze-microsd.webp', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'Black'
-
+        defaultVariant: 'black',
       },
       {
         id: 'wyze-outdoor-power-adapter',
         name: 'Wyze Outdoor Power Adapter',
-        description: 'eady for rain, snow, or shine. Our outdoor adapters work with Wyze Cam v3/v3 Pro/v4, OG series, Pan v3/v4, Duo Cam Pan, and Battery Cam Pro.',
+        description:
+          'Ready for rain, snow, or shine. Works with multiple Wyze camera models.',
         price: 49.99,
         category: 'accessories',
         variants: [
-          { id: 'white', label: 'White', color: '#000', image: '/src/assets/images/wyze-outdoor-power-adapter.webp' },
+          {
+            id: 'white',
+            label: 'White',
+            color: '#000',
+            image: new URL('/src/assets/images/wyze-outdoor-power-adapter.webp', import.meta.url).href,
+          },
         ],
-        defaultVariant: 'White'
-      }
-    ]
-  }
+        defaultVariant: 'white',
+      },
+    ],
+  },
 ];
