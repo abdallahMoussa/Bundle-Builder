@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { FAST_SHIPPING_COAST } from "../../utils/constants"
 import Badge from "../common/Badge"
 import Price from "../common/Price"
@@ -7,6 +8,7 @@ interface SatisfictionProps {
     savings: number
 }
 const Satisfiction = ({ total, savings }: SatisfictionProps) => {
+    const { t } = useTranslation()
 
     return (
         <div className="grid grid-cols-4 items-center gap-3">
@@ -14,8 +16,8 @@ const Satisfiction = ({ total, savings }: SatisfictionProps) => {
                 <img src={"/src/assets/images/satisfcation-badge.png"} alt="Satisfaction badge" className="w-full" />
             </div>
             <div className="col-span-3">
-                <div dir='rtl'>
-                    <Badge title="as low as $19.19/mo" className="rounded-[3px] relative mb-3 font-medium text-[12px] tracking-[-1%]" />
+                <div className="flex justify-end">
+                    <Badge title={t('asLowAs')} className="rounded-[3px] -mx-2 relative mb-2 font-medium text-[12px] tracking-[-1%]" />
                 </div>
                 <div className="flex justify-end items-end gap-3">
                     <Price reviewing compareAtPrice={savings + FAST_SHIPPING_COAST} className="pb-px" />

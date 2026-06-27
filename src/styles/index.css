@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/* Existing Gilroy fonts */
 @font-face {
   font-family: 'Gilroy-Regular';
   src: url('../assets/fonts/Gilroy-Regular.ttf') format('truetype');
@@ -25,20 +26,52 @@
   font-display: swap;
 }
 
-:root {
+/* Add Cairo font for Arabic */
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
   --bg: #ffffff;
-  color-scheme: light dark;
-  color: var(--text);
   background: var(--bg);
+  --brand-purple: theme('colors.brand-purple');
+  color: var(--text);
   font-family: 'Gilroy-Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
 
   @media (max-width: 900px) {
     font-size: 16px;
 
     h3 {
       font-size: 16px;
-
     }
   }
 }
@@ -49,7 +82,10 @@ body {
   background-color: var(--bg);
   font-family: 'Gilroy-Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: all;
+  padding-bottom: 100px;
   animation-duration: 0.5;
+  position: relative;
+  min-height: 100vh;
 }
 
 .font-400,
@@ -74,4 +110,86 @@ body {
   min-height: 100svh;
   padding-inline: 1rem;
   letter-spacing: 0.6px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-purple) #f3f4f6;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-purple);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(0.9);
+}
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] #root {
+  letter-spacing: 0.3px;
+}
+
+[lang="ar"] {
+  font-family: 'Cairo', 'Gilroy-Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme="ar"] .font-400,
+[data-theme="ar"] .font-regular {
+  font-family: 'Cairo', 'Gilroy-Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme="ar"] .font-medium,
+[data-theme="ar"] .font-500 {
+  font-family: 'Cairo', 'Gilroy-Medium', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme="ar"] .font-semibold,
+[data-theme="ar"] .font-600 {
+  font-family: 'Cairo', 'Gilroy-SemiBold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+[data-theme="ar"] body {
+  font-family: 'Cairo', 'Gilroy-Regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@keyframes orbitOpacity {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.pulse-1 {
+  animation: orbitOpacity 1s linear infinite;
+}
+
+.pulse-2 {
+  animation: orbitOpacity 1s linear infinite 0.2s;
+}
+
+.pulse-3 {
+  animation: orbitOpacity 1s linear infinite 0.4s;
+}
+
+.pulse-4 {
+  animation: orbitOpacity 1s linear infinite 0.6s;
 }

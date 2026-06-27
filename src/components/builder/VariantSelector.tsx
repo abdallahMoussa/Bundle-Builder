@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { Variant } from '../../types'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
     variants: Variant[]
@@ -9,6 +10,7 @@ type Props = {
 }
 
 const VariantSelector: FC<Props> = ({ variants, selectedVariantId, onSelect, variantCounts = {} }) => {
+    const { t } = useTranslation()
     return (
         <div className="flex flex-wrap gap-1.5">
             {variants.map((variant) => {
@@ -25,7 +27,7 @@ const VariantSelector: FC<Props> = ({ variants, selectedVariantId, onSelect, var
                             alt={variant.color}
                             className="h-4 w-4 rounded-full object-cover"
                         />
-                        <span className='text-[10px] text-texts-main'>{variant.label}</span>
+                        <span className='text-[10px] text-texts-main'>{t(variant.id)}</span>
                         {variantCounts[variant.id] > 0 && variants?.length > 1 &&
                             <span className='rounded-full transition duration-150 bg-brand-green/30 px-1.5 py-0 text-[10px] font-semibold text-slate-700 shadow-sm'>
                                 {variantCounts[variant.id]}

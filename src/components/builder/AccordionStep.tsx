@@ -32,7 +32,6 @@ const AccordionStep: FC<Props> = ({
 
     return (
         <div
-
             className={`${isOpen ? 'rounded-[10px] bg-brand-baby-blue' : ''} pt-3.75 mb-3`}>
             <p onClick={onToggle} className="text-[12px] cursor-pointer text-start font-500 font-medium uppercase px-3.75 tracking-[1.6px] leading-[100%] text-texts-label">
                 {stepLabel} {t('of')} {STEP_NUMBERS}
@@ -41,12 +40,12 @@ const AccordionStep: FC<Props> = ({
             <div onClick={onToggle} className={`flex cursor-pointer justify-between align-middle pt-2 px-3.75 ${!isOpen ? 'border-b border-b-texts-main' : ''}`}>
                 <div className="flex items-center align-middle gap-2">
                     <Icon name="Camera" className="h-5.5 w-5.5" />
-                    <h3 className="text-[22px] font-semibold tracking-[0.2px] text-texts-main">{title}</h3>
+                    <h3 className="text-[22px] font-semibold tracking-[0.2px] text-texts-main">{t(title)}</h3>
                 </div>
                 <span className="flex items-center gap-1 text-sm font-medium text-brand-purple">
-                    <span>
+                    <p className='font-medium font-500'>
                         {selectedCount > 0 ? `${selectedCount} ${t('selected')}` : ''}
-                    </span>
+                    </p>
                     <Icon name={`${isOpen ? 'ChevronUp' : 'ChevronDown'}`} className="mt-1 h-3 w-3" />
                 </span>
             </div>
@@ -62,14 +61,14 @@ const AccordionStep: FC<Props> = ({
                         {children}
                     </div>
 
-                    <div className="mt-5 flex justify-center">
-                        {!lastStep && (
+                    {!lastStep && isOpen && (
+                        <div className="mt-5 flex justify-center">
                             <Button
                                 onClick={onNext}
-                                label={`${t('next')}: ${nextTitle}`}
+                                label={`${t('next')}: ${t(nextTitle)}`}
                             />
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div >

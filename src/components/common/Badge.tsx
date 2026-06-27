@@ -4,10 +4,10 @@ interface BadgeProps {
     className?: string
 }
 
-const Badge = ({ title, className = '' }: BadgeProps) => {
+const Badge = ({ title, className = 'top-0 [html:lang(en)_&]:left-0 [html:lang(ar)_&]:right-0' }: BadgeProps) => {
     return (
         <span
-            className={twMerge('inline-flex w-fit absolute z-10 top-2 left-2 leading-[100%] text-white px-1.5 py-px text-[12px] font-semibold bg-brand-purple rounded-full', className)}
+            className={twMerge('inline-flex w-fit absolute z-10 leading-[100%] text-white px-1.5 py-px text-[12px] font-semibold bg-brand-purple rounded-full', className)}
         >
             {title}
         </span>

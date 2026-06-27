@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next"
+
 interface PriceProps {
     compareAtPrice?: number
     price?: number
@@ -13,6 +15,8 @@ const Price = ({
     reviewing = false,
     className = ''
 }: PriceProps) => {
+
+    const { t } = useTranslation()
     const isFree = price === 0
 
     const comparePriceClass = reviewing
@@ -34,8 +38,8 @@ const Price = ({
                 </span>
             )}
 
-            {price !== undefined && <span className={`font-semibold ${priceClass}`}>
-                {isFree ? 'FREE' : `$${price?.toFixed(2)}${priceSufex}`}
+            {price !== undefined && <span className={`font-semibold uppercase ${priceClass}`}>
+                {isFree ? t('free') : `$${price?.toFixed(2)}${priceSufex}`}
             </span>}
         </div>
     )

@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { useBundleBuilder } from '../../hooks/useBundleBuilder'
 import AccordionStep from './AccordionStep'
 import ProductCard from './ProductCard'
 
 const Builder = () => {
+    const { t } = useTranslation()
     const {
         steps,
         ui,
@@ -20,7 +22,7 @@ const Builder = () => {
     const allStepsClosed = ui.activeStep === -1
 
     return (
-        <section className={`w-full flex flex-col gap-1.5 lg:w-2/3 ${allStepsClosed ? 'bg-brand-baby-blue rounded-[10px]' : ''}`}>
+        <section className={`w-full self-start flex flex-col gap-1.5 lg:w-2/3 ${allStepsClosed ? 'bg-brand-baby-blue rounded-[10px]' : ''}`}>
 
             {steps.map((step, index) => {
                 const isOpen = ui.activeStep === index
@@ -31,14 +33,14 @@ const Builder = () => {
                         key={step.id}
                         title={step.title}
                         nextTitle={steps[index + 1]?.title}
-                        stepLabel={`STEP ${index + 1}`}
+                        stepLabel={`${t('step')} ${index + 1}`}
                         isOpen={isOpen}
                         selectedCount={selectedCount}
                         onToggle={() => toggleStep(index)}
                         onNext={() => nextStep(index)}
                         lastStep={index === steps.length - 1}
                     >
-                        {step.products.map((product, index) => {
+                        {isOpen && step.products.map((product, index) => {
                             const quantity = getProductQuantityTotal(product)
                             const selectedVariantId = getSelectedVariant(product.id)
 

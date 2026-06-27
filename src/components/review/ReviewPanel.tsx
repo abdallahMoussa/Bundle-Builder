@@ -27,6 +27,23 @@ const ReviewPanel = () => {
         })
     }
 
+    const saveSystemHandler = () => {
+        Swal.fire({
+            title: t('orderSavedSuccessfully'),
+            text: t('orderSavedDescription'),
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: t('leave'),
+            cancelButtonText: t('stay'),
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'https://www.linkedin.com/in/abdallah-moussa/'
+            }
+            saveSystem()
+        })
+    }
+
     const groupedItems = useMemo(() => {
         return reviewItems.reduce<Record<string, ReviewItem[]>>((groups, item) => {
             const category = item.category
@@ -67,8 +84,8 @@ const ReviewPanel = () => {
                                     <h3 className="text-[12px] font-regular text-texts-title uppercase tracking-wide">
                                         {t(category)}
                                     </h3>
-                                    {items.map((item) => (
-                                        <ReviewItemComponent key={`${item.productId}-${item.variantId}`} item={item} />
+                                    {items.map((item, index) => (
+                                        <ReviewItemComponent index={index} key={`${item.productId}-${item.variantId}`} item={item} />
                                     ))}
                                     <Divider />
                                 </div>
@@ -90,7 +107,7 @@ const ReviewPanel = () => {
                     {t('checkout')}
                 </button>
                 <div className='text-center'>
-                    <span onClick={saveSystem} className='underline cursor-pointer hover:text-brand-purple transition-all duration-150 active:saturate-150 select-none text-texts-label text-sm text-regular italic'>{t('saveLater')}</span>
+                    <span onClick={saveSystemHandler} className='underline cursor-pointer hover:text-brand-purple transition-all duration-150 active:saturate-150 select-none text-texts-label text-sm text-regular italic'>{t('saveLater')}</span>
                 </div>
 
             </div>}

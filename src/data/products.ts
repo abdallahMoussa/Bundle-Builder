@@ -3,7 +3,7 @@ import type { Step } from "../types";
 export const productData: Step[] = [
   {
     id: 'cameras',
-    title: 'Choose your cameras',
+    title: 'chooseYourCameras',
     icon: '📷',
     products: [
       {
@@ -86,7 +86,7 @@ export const productData: Step[] = [
   },
   {
     id: 'plan',
-    title: 'Choose your plan',
+    title: 'chooseYourPlan',
     icon: '📋',
     products: [
       {
@@ -99,12 +99,12 @@ export const productData: Step[] = [
         variants: [
           { id: 'black', label: 'Black', color: '#000', image: '/src/assets/icons/wyze-logo.svg', },
         ],
-      }
+      },
     ]
   },
   {
     id: 'sensors',
-    title: 'Choose your sensors',
+    title: 'chooseYourSensors',
     icon: '🔒',
     products: [
       {
@@ -134,7 +134,7 @@ export const productData: Step[] = [
   },
   {
     id: 'accessories',
-    title: 'Add extra protection',
+    title: 'addExtraProtection',
     icon: '🛡️',
     products: [
       {
