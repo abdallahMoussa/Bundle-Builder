@@ -1,4 +1,5 @@
 import { basePartClass, loaderParts } from "./config"
+import logoImg from '@/assets/images/logo.png'
 
 interface LoaderMainProps {
     loading?: boolean
@@ -9,7 +10,7 @@ const LoaderMain = ({ loading = true }: LoaderMainProps) => {
         <div className="fixed left-1/2 top-1/2 z-10 flex -translate-x-1/2 translate-y-[-80%] flex-col items-center justify-center">
             <div
                 id="overlay"
-                className="absolute top-18.5 -ml-2 h-22 w-20"
+                className="absolute top-19 -ml-1 h-23 w-21"
             >
                 {loading && loaderParts.map((part) => (
                     <div
@@ -30,7 +31,7 @@ const LoaderMain = ({ loading = true }: LoaderMainProps) => {
 
             <img
                 className="w-52 min-w-52"
-                src="/src/assets/icons/logo.svg"
+                src={logoImg}
                 alt="Bundle Builder"
             />
 

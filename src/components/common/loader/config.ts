@@ -4,7 +4,7 @@ export const loaderParts = [
     {
         id: 'loader-part1',
         animationClass: 'pulse-1',
-        className: '-top-1.5 -left-0.5 w-10.25 h-11.5',
+        className: '-top-1.5 -left-0.5 w-11 h-11.5',
         clipPath: 'polygon(100% 0%, 2% 50%, 100% 100%)',
     },
     {
@@ -16,13 +16,13 @@ export const loaderParts = [
     {
         id: 'loader-part3',
         animationClass: 'pulse-3',
-        className: 'bottom-0 -right-px w-10.25 h-17.5',
+        className: 'bottom-0 -right-px w-10.25 h-18',
         clipPath: 'polygon(100% 0%, 100% 67%, 0% 100%, 0% 32%)',
     },
     {
         id: 'loader-part4',
         animationClass: 'pulse-4',
-        className: 'bottom-0 -left-0.5 w-10.25 h-17.5',
+        className: 'bottom-0 left-0 w-10.25 h-18',
         clipPath: 'polygon(100% 32%, 100% 100%, 0% 67%, 0% 0%)',
     },
 ]

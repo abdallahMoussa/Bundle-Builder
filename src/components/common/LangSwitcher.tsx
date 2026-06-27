@@ -47,7 +47,7 @@ const LangSwitcher = ({ className = '' }: LangSwitcherProps) => {
     }, [])
 
     return (
-        <div className={`group absolute z-10 -left-1 -top-1 ${className}`.trim()}>
+        <div className={`group fixed z-10 -left-1 -top-1 ${className}`.trim()}>
             <div className="flex flex-col items-start">
                 <button
                     type="button"
