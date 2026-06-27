@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Product } from '../../types'
 import Badge from '../common/Badge'
+import { useTranslation } from 'react-i18next'
+import { savingsPercentage } from '../../utils/helpers'
 
 interface ProductImageProps {
     product: Product
@@ -8,7 +10,7 @@ interface ProductImageProps {
     visible: boolean
 }
 const ProductImage = ({ product, selectedVariantId, visible }: ProductImageProps) => {
-
+    const { t } = useTranslation()
     const [isImageLoading, setIsImageLoading] = useState(true)
     const activeVariant = product.variants?.find((variant) => variant.id === selectedVariantId)
 
@@ -21,7 +23,7 @@ const ProductImage = ({ product, selectedVariantId, visible }: ProductImageProps
                     ${visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}
                   `}
         >
-            {product.badge && <Badge title={product.badge} />}
+            {product.compareAtPrice && <Badge title={`${t('save')} ${savingsPercentage(product.price, product.compareAtPrice)}%`} />}
 
             <div className='relative flex min-h-full items-center justify-center overflow-hidden'>
                 {isImageLoading && (

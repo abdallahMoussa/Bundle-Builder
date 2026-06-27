@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next"
 import { FAST_SHIPPING_COAST } from "../../utils/constants"
 import Badge from "../common/Badge"
 import Price from "../common/Price"
+import imgSrc from '@/assets/images/satisfcation-badge.png'
 
 interface SatisfictionProps {
     total: number
@@ -13,7 +14,7 @@ const Satisfiction = ({ total, savings }: SatisfictionProps) => {
     return (
         <div className="grid grid-cols-4 items-center gap-3">
             <div className="col-span-1">
-                <img src={"/src/assets/images/satisfcation-badge.png"} alt="Satisfaction badge" className="w-full" />
+                <img src={imgSrc} alt="Satisfaction badge" className="w-full" />
             </div>
             <div className="col-span-3">
                 <div className="flex justify-end">

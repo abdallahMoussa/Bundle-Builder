@@ -14,7 +14,6 @@ export interface Product {
   price: number;
   priceSufex?: string;
   compareAtPrice?: number;
-  badge?: string;
   image?: string;
   variants?: Variant[];
   defaultVariant?: string;

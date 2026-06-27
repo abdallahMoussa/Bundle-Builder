@@ -1,11 +1,12 @@
 import Price from '../common/Price'
+import image from '@/assets/icons/shipping.svg'
 
 const FastShipping = () => {
 
     const item = {
         name: 'Fast Shipping',
         price: 0,
-        compareAtPrice: 5.99, image: '/src/assets/icons/shipping.svg',
+        compareAtPrice: 5.99, image,
 
     }
     return (

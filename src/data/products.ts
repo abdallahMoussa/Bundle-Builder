@@ -13,7 +13,6 @@ export const productData: Step[] = [
           'The clearest Wyze Cam ever made. The clearest Wyze Cam ever made. The clearest Wyze Cam ever made.',
         price: 27.98,
         compareAtPrice: 35.98,
-        badge: 'Save 22%',
         category: 'cameras',
         variants: [
           {
@@ -43,7 +42,6 @@ export const productData: Step[] = [
         description: '360° pan and 180° tilt security camera. Learn More',
         price: 34.98,
         compareAtPrice: 39.98,
-        badge: 'Save 12%',
         category: 'cameras',
         variants: [
           {
@@ -67,7 +65,6 @@ export const productData: Step[] = [
         description: '2K floodlight camera with a 160° wide-angle view for your garage.',
         price: 69.98,
         compareAtPrice: 89.98,
-        badge: 'Save 22%',
         category: 'cameras',
         variants: [
           {
@@ -164,7 +161,6 @@ export const productData: Step[] = [
         description: 'Magnetic sensor for doors and windows',
         price: 23.99,
         compareAtPrice: 47.99,
-        badge: 'Save 50%',
         category: 'sensors',
         variants: [
           {
@@ -205,7 +201,6 @@ export const productData: Step[] = [
         description: 'Security camera storage expansion',
         price: 199.99,
         compareAtPrice: 249.99,
-        badge: 'Save 20%',
         category: 'accessories',
         variants: [
           {
