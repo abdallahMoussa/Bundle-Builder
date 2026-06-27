@@ -3,10 +3,21 @@ import { useEffect, useState } from 'react'
 import Builder from './components/builder/Builder'
 import LoaderMain from './components/common/loader/LoaderMain'
 import ReviewPanel from './components/review/ReviewPanel'
+import { useBundleBuilder } from './hooks/useBundleBuilder'
+import { useTranslation } from 'react-i18next'
 
 function App() {
+  const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true)
   const [showLoader, setShowLoader] = useState(true)
+  const { ui } = useBundleBuilder()
+
+  useEffect(() => {
+    i18n.changeLanguage(ui.lang)
+    document.documentElement.dir = ui.lang === 'ar' ? 'rtl' : 'ltr'
+    document.documentElement.lang = ui.lang
+    document.documentElement.setAttribute('data-theme', ui.lang)
+  }, [i18n, ui.lang])
 
   useEffect(() => {
     const stopLoadingTimer = setTimeout(() => {

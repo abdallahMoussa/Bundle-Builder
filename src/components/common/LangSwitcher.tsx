@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Developing from './Developing'
+import { useBundleBuilder } from '../../hooks/useBundleBuilder'
 
 type LangSwitcherProps = {
     className?: string
@@ -12,14 +13,15 @@ type LangSwitcherProps = {
 const LangSwitcher = ({ className = '' }: LangSwitcherProps) => {
     const MySwal = withReactContent(Swal)
     const { i18n, t } = useTranslation()
+    const { toggleLang } = useBundleBuilder()
     const [isDarkMode, setIsDarkMode] = useState(() =>
         document.documentElement.classList.contains('dark')
     )
 
     const toggleLanguage = () => {
+        toggleLang()
         const nextLang = i18n.language === 'en' ? 'ar' : 'en'
         i18n.changeLanguage(nextLang)
-
         document.documentElement.dir = nextLang === 'ar' ? 'rtl' : 'ltr'
         document.documentElement.lang = nextLang
         document.documentElement.setAttribute('data-theme', nextLang === 'ar' ? 'ar' : 'en')

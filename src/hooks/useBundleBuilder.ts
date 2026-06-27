@@ -12,7 +12,7 @@ import {
     setQuantity,
     setSelectedVariant,
 } from '../store/slices/bundleSlice'
-import { setActiveStep, setSaved } from '../store/slices/uiSlice'
+import { Lang, setActiveStep, setLang, setSaved } from '../store/slices/uiSlice'
 
 import { useLocalStorage } from './useLocalStorage'
 
@@ -74,6 +74,15 @@ export const useBundleBuilder = () => {
             dispatch(setActiveStep(ui.activeStep === stepIndex ? -1 : stepIndex))
         },
         [dispatch, ui.activeStep],
+    )
+
+    const toggleLang = useCallback(
+        () => {
+            const lang = ui.lang === 'en' ? 'ar' : 'en' as Lang
+            dispatch(setLang(lang))
+            saveValue('lang', lang)
+        },
+        [dispatch, saveValue, ui.lang],
     )
 
     const nextStep = useCallback(
@@ -202,5 +211,6 @@ export const useBundleBuilder = () => {
         summary,
         resetCart,
         saveSystem,
+        toggleLang
     }
 }

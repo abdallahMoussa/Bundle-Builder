@@ -63,4 +63,5 @@ export interface BundleState {
 export interface UIState {
   activeStep: number;
   isSaved: boolean;
+  lang: string
 }
