@@ -4,7 +4,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { useTranslation } from 'react-i18next'
 
 import { Product } from '../../types'
-import ProductDetailsContent from '../builder/ProductDetailsCntent'
+import ProductDetailsContent from '../builder/ProductDetailsContent'
 
 interface LearnMoreProps {
     product: Product

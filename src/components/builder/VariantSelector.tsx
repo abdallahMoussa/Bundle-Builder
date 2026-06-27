@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 type Props = {
     variants: Variant[]
-    selectedVariantId: string
-    onSelect: (variantId: string) => void
+    selectedVariantId?: string
+    onSelect?: (variantId: string) => void
     variantCounts?: Record<string, number>
 }
 
@@ -19,7 +19,7 @@ const VariantSelector: FC<Props> = ({ variants, selectedVariantId, onSelect, var
                     <button
                         key={variant.id}
                         type="button"
-                        onClick={() => onSelect(variant.id)}
+                        onClick={() => onSelect?.(variant.id)}
                         className={`cursor-pointer transition duration-120 grid grid-cols-[auto_1fr_auto] items-center gap-1 rounded-xs border-[0.5px] px-1 py-1 ${isSelected ? 'border-brand-green bg-brand-green/4' : 'border-borders-silver'}`}
                     >
                         <img

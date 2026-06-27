@@ -52,7 +52,7 @@ const LangSwitcher = ({ className = '' }: LangSwitcherProps) => {
                 <button
                     type="button"
                     aria-label="Toggle language"
-                    className="cursor-pointer rounded-br-xl border border-slate-200 bg-white p-2 text-slate-700 shadow-sm opacity-75 transition-all-all duration-300 hover:opacity-100"
+                    className="cursor-pointer rounded-br-xl border border-slate-200 bg-brand-purple p-2 text-white shadow-sm opacity-75 transition-all-all duration-300 hover:opacity-100"
                 >
                     <FiSettings className="h-4 w-4 transition-all-transform duration-300 group-hover:rotate-90" />
                 </button>
