@@ -75,7 +75,7 @@ const ReviewPanel = () => {
                     <div className="mt-5 space-y-6">
                         {Object.keys(groupedItems).length === 0 ? (
                             <p className="text-sm text-texts-description/50 text-center py-4">
-                                {t('noItems', 'No items in your cart')}
+                                {t('noItems')}
                             </p>
                         ) : (
                             <>
