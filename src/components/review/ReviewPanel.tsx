@@ -7,6 +7,7 @@ import { ReviewItem } from '../../types'
 import FastShipping from './FastShipping'
 import Satisfiction from './Satisfiction'
 import Swal from 'sweetalert2'
+import { FAST_SHIPPING_COAST } from '../../utils/constants'
 
 const ReviewPanel = () => {
     const { t } = useTranslation()
@@ -103,10 +104,7 @@ const ReviewPanel = () => {
                     <Satisfiction total={summary.total} savings={summary.savings} />
                     <div className='text-center'>
                         <span className='text-sm tracking-[-0.6px] text-semibold text-brand-green'>{t('congrats', {
-                            value: `${Number.isInteger(summary.savings)
-                                ? summary.savings
-                                : summary.savings?.toFixed(2)
-                                }$`
+                            value: `${(summary.savings + FAST_SHIPPING_COAST).toFixed(2)}$`
                         })}</span>
                     </div>
                     <button
