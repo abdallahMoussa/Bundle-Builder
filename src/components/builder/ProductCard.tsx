@@ -9,6 +9,7 @@ import { useBundleBuilder } from '../../hooks/useBundleBuilder'
 import VariantSelector from './VariantSelector'
 import QuantityStepper from './QuantityStepper'
 import ProductImage from './ProductImage'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
     product: Product
@@ -62,12 +63,19 @@ const ProductCard: FC<Props> = ({
     return (
         <div
             onClick={handlePlanToggle}
-            className={`
-                  relative h-full flex flex-wrap rounded-[10px] bg-white p-3 pb-1 shadow-sm hover:z-100
-                  transition-all duration-700 ease-out
-                  ${visible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
-                  ${isSelected ? 'border-2 border-brand-purple/70' : 'border-2 border-transparent'}
-                `}
+            className={twMerge(
+                'relative flex h-full flex-wrap rounded-[10px] bg-white p-3 pb-1 shadow-sm transition-all duration-700 ease-out hover:z-100',
+                visible
+                    ? 'translate-x-0 opacity-100'
+                    : '-translate-x-4 opacity-0',
+                isSelected
+                    ? 'border-2 border-brand-purple/70'
+                    : 'border-2 border-transparent',
+                product.category === 'plan' && 'cursor-pointer',
+                product.category === 'plan' &&
+                !isSelected &&
+                'hover:shadow-brand-purple hover:saturate-150'
+            )}
         >
             <ProductImage product={product} selectedVariantId={selectedVariantId} visible={visible} />
 
@@ -115,7 +123,7 @@ const ProductCard: FC<Props> = ({
                 <div
                     className={`
                       flex flex-row-reverse items-center justify-between -mt-2
-                      transition-opacity duration-500 delay-500
+                      transition-opacity duration-500 delay-500 flex-wrap
                       ${visible ? 'opacity-100' : 'opacity-0'}
                   `}
                 >

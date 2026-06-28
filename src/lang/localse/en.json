@@ -50,5 +50,8 @@
     "comingSoon": "Coming Soon",
     "darkModeComingSoon": "Dark mode is currently under development and will be available soon.",
     "ok": "OK",
-    "save": "Save"
+    "save": "Save",
+    "congrats": "Congrats! You’re saving {{value}} on your security bundle!",
+    "satisfictionHeader": "30-day hassle-free returns",
+    "satisfictionDescription": "If you're not totally in love with the product, we will refund you 100%."
 }

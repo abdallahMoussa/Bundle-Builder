@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react'
+import { Children, type FC, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import Icon from '../common/Icon'
 import Divider from '../common/Divider'
@@ -29,7 +29,7 @@ const AccordionStep: FC<Props> = ({
     lastStep,
 }) => {
     const { t } = useTranslation()
-
+    const count = Math.min(Children.count(children), 5)
     return (
         <div
             className={`${isOpen ? 'rounded-[10px] bg-brand-baby-blue' : ''} pt-3.75 mb-3`}>
@@ -57,7 +57,9 @@ const AccordionStep: FC<Props> = ({
                 `}
             >
                 <div className="px-5 py-5">
-                    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-2">
+                    <div
+                        className={`grid grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-${count} lg:grid-cols-2`}
+                    >
                         {children}
                     </div>
 
