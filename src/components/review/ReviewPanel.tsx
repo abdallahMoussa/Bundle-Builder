@@ -102,7 +102,7 @@ const ReviewPanel = () => {
                 {!isCheckoutDisabled && <div className="lg:mt-5 sm:mt-1 mt-5">
                     <Satisfiction total={summary.total} savings={summary.savings} />
                     <div className='text-center'>
-                        <span className='text-sm tracking-[-0.6px] text-semibold text-brand-green'>{t('congrats', { value: `${summary.savings}$` })}</span>
+                        <span className='text-sm tracking-[-0.6px] text-semibold text-brand-green'>{t('congrats', { value: `${summary.savings?.toFixed(2)}$` })}</span>
                     </div>
                     <button
                         type="button"
