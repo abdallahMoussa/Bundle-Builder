@@ -4,6 +4,9 @@ A React-based **multi-step bundle builder UI** that allows users to configure a 
 
 <img width="1254" height="1254" alt="ChatGPT Image Jun 27, 2026, 09_14_37 PM" src="https://github.com/user-attachments/assets/330d77ec-7efc-4976-9607-5048a3d9e799" />
 
+## 🚀 Live Demo
+https://bundle-builder-cyan.vercel.app/
+
 
 ## 🛠️ Tech Stack
 
